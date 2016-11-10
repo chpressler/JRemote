@@ -21,11 +21,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="echoremote" />
+        <module name="raspiremote" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="echoremote" target="1.8" />
+      <module name="raspiremote" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
