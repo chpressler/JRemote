@@ -29,6 +29,7 @@ public class WebSocketClient {
             public void run() {
                 while(true) {
                     if (session == null || !session.isOpen()) {
+                        Logger.getLogger(this.getClass().getName()).log(Level.INFO, "websocket client watchdog trying to reconnect");
                         connect();
                     }
                     try {
@@ -52,15 +53,15 @@ public class WebSocketClient {
 
     @OnOpen
     public void onOpen(Session userSession) {
-        System.out.println("websocket connected");
         this.session = userSession;
+        Logger.getLogger(this.getClass().getName()).log(Level.INFO, "websocket connected session: " + session.getId());
     }
 
     @OnClose
     public void onClose(Session userSession, CloseReason reason) {
-        System.out.println("websocket disconnected " + userSession.getId() + " - " + reason.toString());
         this.session = null;
-        connect();
+        Logger.getLogger(this.getClass().getName()).log(Level.INFO, "websocket disconnected for session: " + userSession.getId() + ". Reason: " + reason.toString() + ". - trying to reconnect...");
+        //connect();
     }
 
     @OnMessage
@@ -87,8 +88,8 @@ public class WebSocketClient {
         }
     }
 
-    public void sendMessage(String message) {
-        this.session.getAsyncRemote().sendText(message);
-    }
+    //public void sendMessage(String message) {
+       // this.session.getAsyncRemote().sendText(message);
+    //}
 
 }
