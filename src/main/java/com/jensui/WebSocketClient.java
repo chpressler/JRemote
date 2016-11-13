@@ -24,19 +24,21 @@ public class WebSocketClient {
 
     public WebSocketClient() {
         connect();
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                while(session == null || !session.isOpen()) {
-//                    connect();
-//                    try {
-//                        Thread.sleep(5000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true) {
+                    if (session == null || !session.isOpen()) {
+                        connect();
+                    }
+                    try {
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
     }
 
     private void connect() {
@@ -58,6 +60,7 @@ public class WebSocketClient {
     public void onClose(Session userSession, CloseReason reason) {
         System.out.println("websocket disconnected " + userSession.getId() + " - " + reason.toString());
         this.session = null;
+        connect();
     }
 
     @OnMessage
