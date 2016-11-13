@@ -1,21 +1,31 @@
 package com.jensui.devices;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Created by christian on 11/9/16.
  */
 public class SqueezeBox extends AIPDevice {
 
-    String turnOn = "http://" + getIP() + ":9002/status.suffix?p0=play&player=00:04:20:2A:25:CC";
-    String turnOff = "http://" + getIP() + ":9002/status.suffix?p0=stop&player=00:04:20:2A:25:CC";
+    String turnOn = "http://" + getIP() + ":9002/status.suffix?p0=play&player=" + getMAC();
+    String turnOff = "http://" + getIP() + ":9002/status.suffix?p0=stop&player=" + getMAC();
+
+    @Override
+    public void turnOn() {
+        sendHTTPGet(turnOn);
+        Logger.getLogger(this.getClass().getName()).log(Level.INFO, getId() + " turned on");
+    }
 
     @Override
     public String getId() {
-        return null;
+        return "squeezebox";
     }
 
     @Override
     public void turnOff() {
-
+        sendHTTPGet(turnOff);
+        Logger.getLogger(this.getClass().getName()).log(Level.INFO, getId() + " turned off");
     }
 
     @Override
@@ -28,10 +38,10 @@ public class SqueezeBox extends AIPDevice {
 
     }
 
-    @Override
-    public void setVolume(int value) {
-
-    }
+//    @Override
+//    public void setVolume(int value) {
+//
+//    }
 
     @Override
     public void mute() {
@@ -48,10 +58,10 @@ public class SqueezeBox extends AIPDevice {
 
     }
 
-    @Override
-    public void setChannel(int channel) {
-
-    }
+//    @Override
+//    public void setChannel(int channel) {
+//
+//    }
 
     @Override
     public void next() {
@@ -93,18 +103,18 @@ public class SqueezeBox extends AIPDevice {
 
     }
 
-    @Override
-    public void moveCursor(CURSOR c) {
-
-    }
+//    @Override
+//    public void moveCursor(CURSOR c) {
+//
+//    }
 
     @Override
     String getIP() {
-        return null;
+        return "192.168.1.11";
     }
 
     @Override
     String getMAC() {
-        return null;
+        return "00:04:20:2A:25:CC";
     }
 }

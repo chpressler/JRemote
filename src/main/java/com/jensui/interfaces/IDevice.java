@@ -5,18 +5,18 @@ package com.jensui.interfaces;
  */
 public interface IDevice {
 
-    enum CURSOR {UP, DOWN, RIGHT, LEFT}
+    //enum CURSOR {UP, DOWN, RIGHT, LEFT}
 
     String getId();
     void turnOn();
     void turnOff();
     void volumeUp();
     void volumeDown();
-    void setVolume(int value);
+    //void setVolume(int value);
     void mute();
     void channelUp();
     void channelDown();
-    void setChannel(int channel);
+    //void setChannel(int channel);
     void next();
     void previous();
     void play();
@@ -25,7 +25,6 @@ public interface IDevice {
     void menu();
     void enter();
     void back();
-    void moveCursor(CURSOR c);
-
+    //void moveCursor(CURSOR c);
 
 }

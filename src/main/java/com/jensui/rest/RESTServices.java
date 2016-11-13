@@ -1,9 +1,11 @@
-package com.jensui;
+package com.jensui.rest;
 
+import com.jensui.DeviceHandler;
 import com.jensui.interfaces.IDevice;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * Created by christian on 11/6/16.
@@ -11,12 +13,12 @@ import javax.ws.rs.core.MediaType;
 @Path("/remote")
 public class RESTServices {
 
-    @GET
+    @POST
     @Path("/control")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String control() {
-        return "";
+    public Response control(RCCommand cmd) {
+        System.out.println("device id: " + cmd.getDeviceId() + " - command: " + cmd.getCommand());
+        return Response.status(201).entity(cmd + " received").build();
     }
 
     @GET
@@ -43,6 +45,15 @@ public class RESTServices {
             }
         }
         return "device with id: " + id + " not found.";
+    }
+
+    @GET
+    @Path("/wsclosed")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String webSocketClosed() {
+
+        return "client notified";
     }
 
     @GET

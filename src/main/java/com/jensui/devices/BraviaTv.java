@@ -10,17 +10,23 @@ import java.util.logging.Logger;
  */
 public class BraviaTv extends AIPDevice {
 
-    private Map<IRCCMD, String> commands;
-    enum IRCCMD {OFF, CHUP, CHDWN, VOLUP, VOLDWN, MUTE, CURUP, CURLFT, CURRGHT, CURDWN, NEXT, BACK, MENU}
+    //private Map<IRCCMD, String> commands;
+    //private enum IRCCMD {OFF, CHUP, CHDWN, VOLUP, VOLDWN, MUTE, CURUP, CURLFT, CURRGHT, CURDWN, NEXT, BACK, MENU}
 
     public BraviaTv () {
-        commands = new HashMap<>();
-        commands.put(IRCCMD.CHUP, "AAAAAQAAAAEAAAAQAw==");
-        commands.put(IRCCMD.CHDWN, "AAAAAQAAAAEAAAARAw==");
-        commands.put(IRCCMD.VOLUP, "AAAAAQAAAAEAAAASAw==");
-        commands.put(IRCCMD.VOLDWN, "AAAAAQAAAAEAAAATAw==");
-        commands.put(IRCCMD.MUTE, "AAAAAQAAAAEAAAAUAw==");
-        commands.put(IRCCMD.OFF, "AAAAAQAAAAEAAAAvAw==");
+//        commands = new HashMap<>();
+//        commands.put(IRCCMD.CHUP, "AAAAAQAAAAEAAAAQAw==");
+//        commands.put(IRCCMD.CHDWN, "AAAAAQAAAAEAAAARAw==");
+//        commands.put(IRCCMD.VOLUP, "AAAAAQAAAAEAAAASAw==");
+//        commands.put(IRCCMD.VOLDWN, "AAAAAQAAAAEAAAATAw==");
+//        commands.put(IRCCMD.MUTE, "AAAAAQAAAAEAAAAUAw==");
+//        commands.put(IRCCMD.OFF, "AAAAAQAAAAEAAAAvAw==");
+    }
+
+    @Override
+    public void turnOn() {
+        wake(getIP(), getMAC());
+        System.out.println(getId() + " turned on");
     }
 
     @Override
@@ -39,7 +45,7 @@ public class BraviaTv extends AIPDevice {
     }
 
     @Override
-    void sendHTTPPost(String ip, String payload) throws Exception {
+    void sendHTTPPost(String ip, String payload) {
         Map<String, String> header = new HashMap<>();
         header.put("X-Auth-PSK", "0000");
         super.sendHTTPPost(header, ip, payload);
@@ -47,44 +53,45 @@ public class BraviaTv extends AIPDevice {
 
     @Override
     public void turnOff() {
-        sendIRCCode(commands.get(IRCCMD.OFF));
+        sendIRCCode("AAAAAQAAAAEAAAAvAw==");
+        //sendIRCCode(commands.get(IRCCMD.OFF));
     }
 
     @Override
     public void volumeUp() {
-        sendIRCCode(commands.get(IRCCMD.VOLUP));
+        sendIRCCode("AAAAAQAAAAEAAAASAw==");
     }
 
     @Override
     public void volumeDown() {
-        sendIRCCode(commands.get(IRCCMD.VOLDWN));
+        sendIRCCode("AAAAAQAAAAEAAAATAw==");
     }
 
-    @Override
-    public void setVolume(int value) {
-        Logger.getLogger(this.getClass().getName()).log(Level.WARNING, "command +setVolume(int value) not supported");
-        System.out.printf("command not supported");
-    }
+//    @Override
+//    public void setVolume(int value) {
+//        Logger.getLogger(this.getClass().getName()).log(Level.WARNING, "command +setVolume(int value) not supported");
+//        System.out.printf("command not supported");
+//    }
 
     @Override
     public void mute() {
-       sendIRCCode(commands.get(IRCCMD.MUTE));
+       sendIRCCode("AAAAAQAAAAEAAAAUAw==");
     }
 
     @Override
     public void channelUp() {
-       sendIRCCode(commands.get(IRCCMD.CHUP));
+       sendIRCCode("AAAAAQAAAAEAAAAQAw==");
     }
 
     @Override
     public void channelDown() {
-        sendIRCCode(commands.get(IRCCMD.CHDWN));
+        sendIRCCode("AAAAAQAAAAEAAAARAw==");
     }
 
-    @Override
-    public void setChannel(int channel) {
-
-    }
+//    @Override
+//    public void setChannel(int channel) {
+//
+//    }
 
     @Override
     public void next() {
@@ -126,10 +133,10 @@ public class BraviaTv extends AIPDevice {
 
     }
 
-    @Override
-    public void moveCursor(CURSOR c) {
-
-    }
+//    @Override
+//    public void moveCursor(CURSOR c) {
+//
+//    }
 
     @Override
     String getIP() {

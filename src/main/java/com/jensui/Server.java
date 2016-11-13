@@ -22,7 +22,9 @@ public class Server {
     }
 
     public void shutdown() throws Exception {
-        server.stop(0);
+        if(server != null) {
+            server.stop(0);
+        }
         //server.shutdown();
         System.out.println("server shut down");
     }
