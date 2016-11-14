@@ -34,6 +34,11 @@ public class RaspiRemote {
                     for(IDevice d : DeviceHandler.getInstance().getDevices()) {
                         System.out.println("Device id: " + d.getId() + " - class: " + d.getClass().getName());
                     }
+                } else if(nextLine.equals("websocket")) {
+                    String str = "websocket client " + ((client.session == null) ? " not connected, no session available " : "session: " + client.session.getId() + " - open: " + client.session.isOpen());
+                    Logger.getLogger(RaspiRemote.class.getName()).log(Level.INFO, str);
+                } else if(nextLine.equals("reconnect")) {
+                    client.connect();
                 } else {
                     System.out.println("invalid command");
                 }

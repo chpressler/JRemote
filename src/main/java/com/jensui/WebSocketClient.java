@@ -42,8 +42,11 @@ public class WebSocketClient {
         }).start();
     }
 
-    private void connect() {
+    void connect() {
         try {
+            if(session != null) {
+                session.close();
+            }
             container = ContainerProvider.getWebSocketContainer();
             container.connectToServer(this, new URI(wsendpoint));
         } catch(Exception e) {
