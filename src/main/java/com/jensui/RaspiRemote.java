@@ -2,7 +2,6 @@ package com.jensui;
 
 import com.jensui.interfaces.IDevice;
 
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +21,6 @@ public class RaspiRemote {
 //            server.start();
 
             client = new WebSocketClient();
-            //client.addMessageHandler(message -> triggerDevice(message));
 
             System.out.println(RaspiRemote.class.getSimpleName() + " Version: " + getVersion() + " started. \nTo quit type in exit or quit or call rest service.");
             Scanner s = new Scanner(System.in);
@@ -35,7 +33,7 @@ public class RaspiRemote {
                         System.out.println("Device id: " + d.getId() + " - class: " + d.getClass().getName());
                     }
                 } else if(nextLine.equals("websocket")) {
-                    String str = "websocket client " + ((client.session == null) ? " not connected, no session available " : "session: " + client.session.getId() + " - open: " + client.session.isOpen());
+                    String str = "websocket client " + ((client.getSession() == null) ? " not connected, no session available " : "session: " + client.getSession().getId() + " - open: " + client.getSession().isOpen());
                     Logger.getLogger(RaspiRemote.class.getName()).log(Level.INFO, str);
                 } else if(nextLine.equals("reconnect")) {
                     client.connect();
@@ -52,10 +50,10 @@ public class RaspiRemote {
 //            } catch(Exception e1) {
 //                e1.printStackTrace();
 //            }
-            if(client != null && client.session != null) {
+            if(client != null && client.getSession() != null) {
                 try {
-                    client.session.close();
-                } catch (IOException e) {
+                    client.close();
+                } catch (Exception e) {
                     Logger.getLogger(RaspiRemote.class.getName()).log(Level.SEVERE, "WebSocket client could not be closed. Reason: " + e.getMessage());
                 }
             }

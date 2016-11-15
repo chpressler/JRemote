@@ -1,5 +1,5 @@
 #surefire
-#Sun Nov 13 18:05:28 CST 2016
+#Mon Nov 14 17:20:46 CST 2016
 enableAssertions=true
 testSuiteDefinitionTestSourceDirectory=/Users/christian/Documents/workspace/jensui/raspiremote/src/test/java
 classPathUrl.39=/Users/christian/.m2/repository/com/sun/mail/javax.mail/1.5.0/javax.mail-1.5.0.jar
