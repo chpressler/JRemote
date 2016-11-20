@@ -1,2 +1,2 @@
 # raspiremote
-Java Application to run on Raspberry Pi controlling IR Transmitter to remote control via IFTT, Amazon Echo, etc.
+Java Application to run on Raspberry Pi controlling Devices (TVs, Radios, etc.) via IP or IR
