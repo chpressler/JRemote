@@ -2,6 +2,8 @@ package com.jensui;
 
 import com.jensui.devices.BraviaTv;
 import com.jensui.devices.SqueezeBox;
+import com.jensui.devices.VizioSoundbar;
+import com.jensui.devices.VizioTv;
 import com.jensui.interfaces.IDevice;
 
 import java.io.File;
@@ -43,6 +45,8 @@ public class DeviceHandler {
     private void registerDevices() throws Exception {
         devices.add(new BraviaTv());
         devices.add(new SqueezeBox());
+        devices.add(new VizioTv());
+        devices.add(new VizioSoundbar());
 //        URL url = this.getClass().getProtectionDomain().getCodeSource().getLocation();
 //        String jarPath = URLDecoder.decode(url.getFile(), "UTF-8");
 //        //String relPath = "com.jensui.devices".replace('.', '/');
