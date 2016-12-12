@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="raspiremote" />
+        <module name="jremote" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="raspiremote" target="1.8" />
+      <module name="jremote" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
