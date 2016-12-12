@@ -1,7 +1,7 @@
-package com.jensui.rest;
+package io.github.chpressler.jremote.rest;
 
-import com.jensui.DeviceHandler;
-import com.jensui.interfaces.IDevice;
+import io.github.chpressler.jremote.DeviceHandler;
+import io.github.chpressler.jremote.interfaces.IDevice;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

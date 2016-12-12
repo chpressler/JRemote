@@ -1,4 +1,4 @@
-package com.jensui.devices;
+package io.github.chpressler.jremote.devices;
 
 import java.util.HashMap;
 import java.util.Map;

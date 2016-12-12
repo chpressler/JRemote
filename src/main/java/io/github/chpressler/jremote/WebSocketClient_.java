@@ -1,6 +1,6 @@
-package com.jensui;
+package io.github.chpressler.jremote;
 
-import com.jensui.interfaces.IDevice;
+import io.github.chpressler.jremote.interfaces.IDevice;
 import org.codehaus.jettison.json.JSONObject;
 
 import javax.websocket.*;
@@ -14,7 +14,18 @@ import java.util.logging.Logger;
  * Created by christian on 11/9/16.
  */
 @ClientEndpoint
-public class WebSocketClient {
+public class WebSocketClient_ {
+
+    private static volatile WebSocketClient_ instance;
+
+    public static WebSocketClient_ getInstance() {
+        synchronized (WebSocketClient_.class) {
+            if(instance == null) {
+                instance = new WebSocketClient_();
+            }
+            return instance;
+        }
+    }
 
     private Logger logger = Logger.getLogger(this.getClass().getName());
     private volatile Session session = null;
@@ -30,21 +41,20 @@ public class WebSocketClient {
         }
     }
 
-    public WebSocketClient() {
+    private WebSocketClient_() {
         connect();
         watchdog = new Thread(new Runnable() {
             @Override
             public void run() {
                 synchronized (this) {
                     while (true) {
-                        try {
-                            session.getBasicRemote().sendText("ping");
-                        } catch(Exception e) {
-                            //Logger.getLogger(this.getClass().getName()).log(Level.INFO, "websocket watchdog could not send ping, trying to reconnect...");
+                        //Logger.getLogger(this.getClass().getName()).log(Level.INFO, "websocket watchdog checking session...");
+                        if (session == null || !session.isOpen()) {
+                            Logger.getLogger(this.getClass().getName()).log(Level.INFO, "websocket client watchdog trying to reconnect");
                             connect();
                         }
                         try {
-                            Thread.sleep(10000);
+                            Thread.sleep(20000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -104,7 +114,7 @@ public class WebSocketClient {
             String m = jsonObj.getString("command");
             for (IDevice d : DeviceHandler.getInstance().getDevices()) {
                 if (d.getId().equals(id)) {
-                    Class cls = Class.forName("com.jensui.interfaces.IDevice");
+                    Class cls = Class.forName("IDevice");
                     //Class cls = d.getClass();
                     Class noparams[] = {};
                     Method method = cls.getDeclaredMethod(m, noparams);
@@ -115,7 +125,7 @@ public class WebSocketClient {
             }
             Logger.getLogger(this.getClass().getName()).log(Level.INFO, "invalid command: " + m);
         } catch (Exception e) {
-            //Logger.getLogger(this.getClass().getName()).log(Level.WARNING, e.getMessage());
+            Logger.getLogger(this.getClass().getName()).log(Level.WARNING, e.getMessage());
             //e.printStackTrace();
         }
     }

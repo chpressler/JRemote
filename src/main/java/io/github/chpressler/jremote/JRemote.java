@@ -1,6 +1,6 @@
-package com.jensui;
+package io.github.chpressler.jremote;
 
-import com.jensui.interfaces.IDevice;
+import io.github.chpressler.jremote.interfaces.IDevice;
 
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 /**
  * Created by christian on 11/6/16.
  */
-public class RaspiRemote {
+public class JRemote {
 
     public static void main(String[] args) {
 
@@ -22,7 +22,7 @@ public class RaspiRemote {
 
             client = new WebSocketClient();
 
-            System.out.println(RaspiRemote.class.getSimpleName() + " Version: " + getVersion() + " started. \nTo quit type in exit or quit or call rest service.");
+            System.out.println(JRemote.class.getSimpleName() + " Version: " + getVersion() + " started. \nTo quit type in exit or quit or call rest service.");
             Scanner s = new Scanner(System.in);
 
             String nextLine;
@@ -34,7 +34,7 @@ public class RaspiRemote {
                     }
                 } else if(nextLine.equals("websocket")) {
                     String str = "websocket client " + ((client.getSession() == null) ? " not connected, no session available " : "session: " + client.getSession().getId() + " - open: " + client.getSession().isOpen());
-                    Logger.getLogger(RaspiRemote.class.getName()).log(Level.INFO, str);
+                    Logger.getLogger(JRemote.class.getName()).log(Level.INFO, str);
                 } else if(nextLine.equals("reconnect")) {
                     client.connect();
                 } else {
@@ -42,7 +42,7 @@ public class RaspiRemote {
                 }
             }
         } catch(Exception e) {
-            System.out.println(RaspiRemote.class.getSimpleName() + " Version: " + getVersion() + " could not be started. Reason: " + e.getMessage());
+            System.out.println(JRemote.class.getSimpleName() + " Version: " + getVersion() + " could not be started. Reason: " + e.getMessage());
             //e.printStackTrace();
         } finally {
 //            try {
@@ -54,7 +54,7 @@ public class RaspiRemote {
                 try {
                     client.close();
                 } catch (Exception e) {
-                    Logger.getLogger(RaspiRemote.class.getName()).log(Level.SEVERE, "WebSocket client could not be closed. Reason: " + e.getMessage());
+                    Logger.getLogger(JRemote.class.getName()).log(Level.SEVERE, "WebSocket client could not be closed. Reason: " + e.getMessage());
                 }
             }
         }

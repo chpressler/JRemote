@@ -1,4 +1,4 @@
-package com.jensui;
+package io.github.chpressler.jremote;
 
 import java.io.IOException;
 import java.net.InetAddress;

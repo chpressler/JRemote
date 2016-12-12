@@ -1,21 +1,21 @@
-package com.jensui.devices;
+package io.github.chpressler.jremote.devices;
 
-import com.jensui.irprotocols.IRProtocolVizioTVRemote;
+import io.github.chpressler.jremote.irprotocols.IRProtocolVizioSoundbarRemote;
+import io.github.chpressler.jremote.irprotocols.IRProtocolVizioTVRemote;
 
 /**
  * Created by christian on 11/8/16.
  */
-public class VizioTv extends AIRDevice {
-
+public class VizioSoundbar extends AIRDevice {
 
     @Override
     public String getId() {
-        return "viziotv";
+        return "viziosoundbar";
     }
 
     @Override
     public void turnOn() {
-        sendSignal(IRProtocolVizioTVRemote.button_on_off);
+        sendSignal(IRProtocolVizioSoundbarRemote.button_on_off);
     }
 
     @Override
@@ -30,22 +30,22 @@ public class VizioTv extends AIRDevice {
 
     @Override
     public void volumeDown() {
-        sendSignal(IRProtocolVizioTVRemote.button_volumeDown);
+        sendSignal(IRProtocolVizioSoundbarRemote.button_volumeDown);
     }
 
     @Override
     public void mute() {
-
+        sendSignal(IRProtocolVizioSoundbarRemote.button_mute);
     }
 
     @Override
     public void channelUp() {
-        sendSignal(IRProtocolVizioTVRemote.button_channelUp);
+
     }
 
     @Override
     public void channelDown() {
-        sendSignal(IRProtocolVizioTVRemote.button_channelDown);
+
     }
 
     @Override

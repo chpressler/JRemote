@@ -1,4 +1,4 @@
-package com.jensui.interfaces;
+package io.github.chpressler.jremote.interfaces;
 
 /**
  * Created by christian on 11/8/16.

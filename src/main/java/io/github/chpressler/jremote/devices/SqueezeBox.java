@@ -1,4 +1,4 @@
-package com.jensui.devices;
+package io.github.chpressler.jremote.devices;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -1,6 +1,6 @@
-package com.jensui.devices;
+package io.github.chpressler.jremote.devices;
 
-import com.jensui.interfaces.IDevice;
+import io.github.chpressler.jremote.interfaces.IDevice;
 import com.raspoid.PWMPin;
 import com.raspoid.Tools;
 import com.raspoid.additionalcomponents.ir.IRSignal;

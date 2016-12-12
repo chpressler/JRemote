@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jensui.irprotocols;
+package io.github.chpressler.jremote.irprotocols;
 
 import com.raspoid.additionalcomponents.ir.IRProtocol;
 import com.raspoid.additionalcomponents.ir.IRSignal;

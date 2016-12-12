@@ -1,10 +1,10 @@
-package com.jensui;
+package io.github.chpressler.jremote;
 
-import com.jensui.devices.BraviaTv;
-import com.jensui.devices.SqueezeBox;
-import com.jensui.devices.VizioSoundbar;
-import com.jensui.devices.VizioTv;
-import com.jensui.interfaces.IDevice;
+import io.github.chpressler.jremote.devices.BraviaTv;
+import io.github.chpressler.jremote.devices.SqueezeBox;
+import io.github.chpressler.jremote.devices.VizioSoundbar;
+import io.github.chpressler.jremote.devices.VizioTv;
+import io.github.chpressler.jremote.interfaces.IDevice;
 
 import java.io.File;
 import java.net.URL;

@@ -1,4 +1,4 @@
-package com.jensui.rest;
+package io.github.chpressler.jremote.rest;
 
 /**
  * Created by christian on 11/11/16.

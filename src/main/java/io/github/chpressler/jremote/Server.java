@@ -1,4 +1,4 @@
-package com.jensui;
+package io.github.chpressler.jremote;
 
 //import org.glassfish.grizzly.http.server.HttpServer;
 import com.sun.jersey.api.container.httpserver.HttpServerFactory;
